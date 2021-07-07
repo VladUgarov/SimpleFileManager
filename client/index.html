@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="index.css">
+    </head>
+
+    <body>
+    <div class="container bg-secondary">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="d-flex justify-content-center">Simple file manager</h1>
+                <button id="buttonAllFile" type="button" class="btn btn-primary"  onclick="getAllFile()">Список файлов</button>
+            </div>
+            <hr/>
+            <div class="col-6">
+                <h3>Create file</h3>
+                <div class="col-12">
+                    <input id="newFileName" type="text" class="form-control" placeholder="Введите название файла">
+                </div>
+                <div class="col-12">
+                    <button id="buttonNewFile" type="button" class="btn btn-primary"  onclick="createFile()">Создать файл</button>
+                </div>
+            </div>
+            <div class="col-6">
+                <h3>Delete File</h3>
+                <div class="col-12">
+                    <input id="deleteFileName" tyepe="text" class="form-control" placeholder="Введите название файла">
+                </div>
+                <div class="col-12">
+                    <button type="button" class="btn btn-primary">Удалить файл</button>
+                </div>
+            </div>
+            <div class="col-6">
+                <h3>Read file</h3>
+                <div class="col-12">
+                    <input type="text" class="form-control" placeholder="Введите название файла">
+                </div>
+                <div class="col-12">
+                    <textarea readonly class="form-control" id="floatingTextarea"></textarea>
+                </div>
+                <div class="col-12">
+                    <button type="button" class="btn btn-primary">Прочитать файл</button>
+                </div>
+            </div>
+            <div class="col-6">
+                <h3>Update file</h3>
+                <div class="col-12">
+                    <input type="text" class="form-control" placeholder="Введите название файла">
+                </div>
+                <div class="col-12">
+                    <textarea class="form-control" id="floatingTextarea"></textarea>
+                </div>
+                <div class="col-12">
+                    <button type="button" class="btn btn-primary">Прочитать файл</button>
+                    <button type="button" class="btn btn-primary">Обновить файл</button>
+                </div>
+            </div>
+            <pre>
+                <div id="content"></div>
+            </pre>
+        </div>
+    </div>
+
+    <script src="frontend.js"></script>
+    </body>
+</html>

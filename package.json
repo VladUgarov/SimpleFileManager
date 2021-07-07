@@ -1,0 +1,24 @@
+{
+  "name": "filemanager2",
+  "version": "1.0.0",
+  "description": "File manager",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "js",
+    "expressjs",
+    "rest",
+    "api"
+  ],
+  "author": "Vladislav Ugarov",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9"
+  }
+}
