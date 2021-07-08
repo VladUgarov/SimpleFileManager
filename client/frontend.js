@@ -3,53 +3,90 @@ const request = new XMLHttpRequest();
 function createFile() {
     const fileName = document.getElementById("newFileName").value;
     const json = JSON.stringify({fileName: fileName});
-    request.open('POST', '/api/file', true);
+    request.open('POST', '/api/createFile', true);
     request.setRequestHeader('Content-Type', 'application/json');
     request.addEventListener("load", () => {
-        const resivedText = JSON.parse(request.responseText);
+        const received = JSON.parse(request.response);
         if (request.status === 200) {
-            document.getElementById('content').innerHTML = "";
-            document.getElementById('content').innerHTML = "file created: " + resivedText;
+            document.getElementById('serverResponse').innerHTML = "";
+            document.getElementById('serverResponse').innerHTML = "file created: " + received;
         }
     });
     request.send(json);
-    // const response = await request('/api/file','POST', nameFile);
-    // console.log(response)
-    // if (response === "ready") {
-    //     document.getElementById('content').innerHTML = "";
-    //     document.getElementById('content').innerHTML = "file status " + response;
-    // }
-};
-
-async function getAllFile() {
-    const allFiels = await request('/api/file');
 };
 
 function deleteFile() {
+    const fileName = document.getElementById("deleteFileName").value;
+    const json = JSON.stringify({fileName: fileName});
+    request.open('DELETE', '/api/deleteFile', true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.addEventListener("load", () => {
+        const received = JSON.parse(request.response);
+        if (request.status === 200) {
+            document.getElementById('serverResponse').innerHTML = "";
+            document.getElementById('serverResponse').innerHTML = "file deleted: " + received;
+        }
+    });
+    request.send(json);
+};
 
+function readOnlyFile() {
+    const fileName = document.getElementById("readOnlyFileName").value;
+    const json = JSON.stringify({fileName: fileName});
+    request.open('POST', '/api/readFile', true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.addEventListener("load", () => {
+        const received = JSON.parse(request.response);
+        if (request.status === 200) {
+            document.getElementById('readOnlyFileContent').innerHTML = "";
+            document.getElementById('readOnlyFileContent').innerHTML = received.content;
+            document.getElementById('serverResponse').innerHTML = "";
+            document.getElementById('serverResponse').innerHTML = "file is open for reading: " + received.fileName;
+        }
+    });
+    request.send(json);
 };
 
 function readFile() {
-
+    const fileName = document.getElementById("readFileName").value;
+    const json = JSON.stringify({fileName: fileName});
+    request.open('POST', '/api/readFile', true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.addEventListener("load", () => {
+        const received = JSON.parse(request.response);
+        if (request.status === 200) {
+            document.getElementById('updateFileContent').innerHTML = "";
+            document.getElementById('updateFileContent').innerHTML = received.content;
+            document.getElementById('serverResponse').innerHTML = "";
+            document.getElementById('serverResponse').innerHTML = "file is open for reading and updating: " + received.fileName;
+        }
+    });
+    request.send(json);
 };
 
-// async function request(url, method = 'GET', data = null) {
-//     try {
-//         const headers = {}
-//         let body
-//
-//         if (data) {
-//             headers['Content-Type'] = 'application/json'
-//             body = JSON.stringify(data)
-//         }
-//
-//         const response = await fetch(url, {
-//             method,
-//             headers,
-//             body
-//         })
-//         return await response.json()
-//     } catch (e) {
-//         console.warn('Error:', e.message)
-//     }
-// }
+function updateFile() {
+    const fileName = document.getElementById("readFileName").value;
+    const fileContent = document.getElementById("updateFileContent").value;
+    const json = JSON.stringify({fileName: fileName, fileContent: fileContent });
+    request.open('PUT', '/api/updateFile', true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.addEventListener("load", () => {
+        const received = JSON.parse(request.response);
+        if (request.status === 200) {
+            document.getElementById('serverResponse').innerHTML = "";
+            document.getElementById('serverResponse').innerHTML = "file updated: " + received;
+        }
+    });
+    request.send(json);
+};
+
+function getAllFiles() {
+    request.open('GET', '/api/getAllFiles', true);
+    request.addEventListener("load", () => {
+        const received = JSON.parse(request.response);
+        if (request.status === 200) {
+            alert(received)
+        }
+    });
+    request.send();
+};

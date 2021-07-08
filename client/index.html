@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-12">
                 <h1 class="d-flex justify-content-center">Simple file manager</h1>
-                <button id="buttonAllFile" type="button" class="btn btn-primary"  onclick="getAllFile()">Список файлов</button>
+                <button id="buttonAllFile" type="button" class="btn btn-primary"  onclick="getAllFiles()">Список файлов</button>
             </div>
             <hr/>
             <div class="col-6">
@@ -27,39 +27,39 @@
             <div class="col-6">
                 <h3>Delete File</h3>
                 <div class="col-12">
-                    <input id="deleteFileName" tyepe="text" class="form-control" placeholder="Введите название файла">
+                    <input id="deleteFileName" type="text" class="form-control" placeholder="Введите название файла">
                 </div>
                 <div class="col-12">
-                    <button type="button" class="btn btn-primary">Удалить файл</button>
+                    <button id="buttonDelFile" type="button" class="btn btn-primary" onclick="deleteFile()">Удалить файл</button>
                 </div>
             </div>
             <div class="col-6">
                 <h3>Read file</h3>
                 <div class="col-12">
-                    <input type="text" class="form-control" placeholder="Введите название файла">
+                    <input id="readOnlyFileName" type="text" class="form-control" placeholder="Введите название файла">
                 </div>
                 <div class="col-12">
-                    <textarea readonly class="form-control" id="floatingTextarea"></textarea>
+                    <textarea readonly class="form-control" id="readOnlyFileContent"></textarea>
                 </div>
                 <div class="col-12">
-                    <button type="button" class="btn btn-primary">Прочитать файл</button>
+                    <button type="button" class="btn btn-primary" onclick="readOnlyFile()">Прочитать файл</button>
                 </div>
             </div>
             <div class="col-6">
                 <h3>Update file</h3>
                 <div class="col-12">
-                    <input type="text" class="form-control" placeholder="Введите название файла">
+                    <input id="readFileName" type="text" class="form-control" placeholder="Введите название файла">
                 </div>
                 <div class="col-12">
-                    <textarea class="form-control" id="floatingTextarea"></textarea>
+                    <textarea  class="form-control" id="updateFileContent"></textarea>
                 </div>
                 <div class="col-12">
-                    <button type="button" class="btn btn-primary">Прочитать файл</button>
-                    <button type="button" class="btn btn-primary">Обновить файл</button>
+                    <button type="button" class="btn btn-primary" onclick="readFile()">Прочитать файл</button>
+                    <button type="button" class="btn btn-primary" onclick="updateFile()">Обновить файл</button>
                 </div>
             </div>
             <pre>
-                <div id="content"></div>
+                <div id="serverResponse"></div>
             </pre>
         </div>
     </div>
