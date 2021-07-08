@@ -8,7 +8,7 @@ function createFile() {
     request.addEventListener("load", () => {
         const received = JSON.parse(request.response);
         if (request.status === 200) {
-            document.getElementById('serverResponse').innerHTML = "";
+            clearServerResponse()
             document.getElementById('serverResponse').innerHTML = "file created: " + received;
         }
     });
@@ -23,7 +23,7 @@ function deleteFile() {
     request.addEventListener("load", () => {
         const received = JSON.parse(request.response);
         if (request.status === 200) {
-            document.getElementById('serverResponse').innerHTML = "";
+            clearServerResponse()
             document.getElementById('serverResponse').innerHTML = "file deleted: " + received;
         }
     });
@@ -31,7 +31,7 @@ function deleteFile() {
 };
 
 function readOnlyFile() {
-    const fileName = document.getElementById("readOnlyFileName").value;
+    const fileName = document.getElementById("readOnlyFileName").value
     const json = JSON.stringify({fileName: fileName});
     request.open('POST', '/api/readFile', true);
     request.setRequestHeader('Content-Type', 'application/json');
@@ -40,7 +40,7 @@ function readOnlyFile() {
         if (request.status === 200) {
             document.getElementById('readOnlyFileContent').innerHTML = "";
             document.getElementById('readOnlyFileContent').innerHTML = received.content;
-            document.getElementById('serverResponse').innerHTML = "";
+            clearServerResponse()
             document.getElementById('serverResponse').innerHTML = "file is open for reading: " + received.fileName;
         }
     });
@@ -57,7 +57,7 @@ function readFile() {
         if (request.status === 200) {
             document.getElementById('updateFileContent').innerHTML = "";
             document.getElementById('updateFileContent').innerHTML = received.content;
-            document.getElementById('serverResponse').innerHTML = "";
+            clearServerResponse()
             document.getElementById('serverResponse').innerHTML = "file is open for reading and updating: " + received.fileName;
         }
     });
@@ -73,7 +73,7 @@ function updateFile() {
     request.addEventListener("load", () => {
         const received = JSON.parse(request.response);
         if (request.status === 200) {
-            document.getElementById('serverResponse').innerHTML = "";
+            clearServerResponse()
             document.getElementById('serverResponse').innerHTML = "file updated: " + received;
         }
     });
@@ -90,3 +90,9 @@ function getAllFiles() {
     });
     request.send();
 };
+
+function clearServerResponse(){
+    setTimeout(()=>{
+        document.getElementById('serverResponse').innerHTML = "";
+    },3000)
+}
