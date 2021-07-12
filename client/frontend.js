@@ -32,7 +32,7 @@ function deleteFile() {
 
 function readOnlyFile() {
     const request = new XMLHttpRequest();
-    const fileName = document.getElementById("readOnlyFileName").value
+    const fileName = document.getElementById("readOnlyFileName").value;
     const json = JSON.stringify({fileName: fileName});
     request.open('POST', '/api/readFile', true);
     request.setRequestHeader('Content-Type', 'application/json');
