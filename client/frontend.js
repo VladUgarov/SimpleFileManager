@@ -1,6 +1,5 @@
-const request = new XMLHttpRequest();
-
 function createFile() {
+    const request = new XMLHttpRequest();
     const fileName = document.getElementById("newFileName").value;
     const json = JSON.stringify({fileName: fileName});
     request.open('POST', '/api/createFile', true);
@@ -16,6 +15,7 @@ function createFile() {
 }
 
 function deleteFile() {
+    const request = new XMLHttpRequest();
     const fileName = document.getElementById("deleteFileName").value;
     const json = JSON.stringify({fileName: fileName});
     request.open('DELETE', '/api/deleteFile', true);
@@ -31,6 +31,7 @@ function deleteFile() {
 }
 
 function readOnlyFile() {
+    const request = new XMLHttpRequest();
     const fileName = document.getElementById("readOnlyFileName").value
     const json = JSON.stringify({fileName: fileName});
     request.open('POST', '/api/readFile', true);
@@ -48,6 +49,7 @@ function readOnlyFile() {
 }
 
 function readFile() {
+    const request = new XMLHttpRequest();
     const fileName = document.getElementById("readFileName").value;
     const json = JSON.stringify({fileName: fileName});
     request.open('POST', '/api/readFile', true);
@@ -65,6 +67,7 @@ function readFile() {
 }
 
 function updateFile() {
+    const request = new XMLHttpRequest();
     const fileName = document.getElementById("readFileName").value;
     const fileContent = document.getElementById("updateFileContent").value;
     const json = JSON.stringify({fileName: fileName, fileContent: fileContent });
@@ -83,6 +86,7 @@ function updateFile() {
 }
 
 function getAllFiles() {
+    const request = new XMLHttpRequest();
     request.open('GET', '/api/getAllFiles', true);
     request.addEventListener("load", () => {
         const received = JSON.parse(request.response);
