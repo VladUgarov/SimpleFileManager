@@ -1,5 +1,5 @@
-import path from 'path'
-import fs from 'fs'
+import path from 'path';
+import fs from 'fs';
 
 export async function createFile(fileName) {
     fileName += '.txt';
@@ -54,7 +54,11 @@ export async function updateFile(fileName, fileContent) {
             if (error) {
                 reject(new Error("Update file Error"));
             } else {
-                resolve(fileName);
+                const res = {
+                    fileName: fileName,
+                    content: fileContent
+                }
+                resolve(res);
                 console.log("File updated " + fileName);
             }
         });
@@ -67,9 +71,9 @@ export async function getAllFiles() {
             if (error) {
                 reject(new Error("Getting the list of files ended with an error"));
             } else {
-                const arrFiles =[]
+                const arrFiles = [];
                 files.forEach(file => {
-                    arrFiles.push(file)
+                    arrFiles.push(file);
                 })
                 resolve(arrFiles);
                 console.log("file list received");

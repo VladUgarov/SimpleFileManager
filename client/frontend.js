@@ -8,12 +8,12 @@ function createFile() {
     request.addEventListener("load", () => {
         const received = JSON.parse(request.response);
         if (request.status === 200) {
-            clearServerResponse()
+            clearServerResponse();
             document.getElementById('serverResponse').innerHTML = "file created: " + received;
         }
     });
     request.send(json);
-};
+}
 
 function deleteFile() {
     const fileName = document.getElementById("deleteFileName").value;
@@ -23,12 +23,12 @@ function deleteFile() {
     request.addEventListener("load", () => {
         const received = JSON.parse(request.response);
         if (request.status === 200) {
-            clearServerResponse()
+            clearServerResponse();
             document.getElementById('serverResponse').innerHTML = "file deleted: " + received;
         }
     });
     request.send(json);
-};
+}
 
 function readOnlyFile() {
     const fileName = document.getElementById("readOnlyFileName").value
@@ -40,12 +40,12 @@ function readOnlyFile() {
         if (request.status === 200) {
             document.getElementById('readOnlyFileContent').innerHTML = "";
             document.getElementById('readOnlyFileContent').innerHTML = received.content;
-            clearServerResponse()
+            clearServerResponse();
             document.getElementById('serverResponse').innerHTML = "file is open for reading: " + received.fileName;
         }
     });
     request.send(json);
-};
+}
 
 function readFile() {
     const fileName = document.getElementById("readFileName").value;
@@ -57,12 +57,12 @@ function readFile() {
         if (request.status === 200) {
             document.getElementById('updateFileContent').innerHTML = "";
             document.getElementById('updateFileContent').innerHTML = received.content;
-            clearServerResponse()
+            clearServerResponse();
             document.getElementById('serverResponse').innerHTML = "file is open for reading and updating: " + received.fileName;
         }
     });
     request.send(json);
-};
+}
 
 function updateFile() {
     const fileName = document.getElementById("readFileName").value;
@@ -73,26 +73,28 @@ function updateFile() {
     request.addEventListener("load", () => {
         const received = JSON.parse(request.response);
         if (request.status === 200) {
-            clearServerResponse()
-            document.getElementById('serverResponse').innerHTML = "file updated: " + received;
+            clearServerResponse();
+            document.getElementById('updateFileContent').innerHTML = "";
+            document.getElementById('updateFileContent').innerHTML = received.content;
+            document.getElementById('serverResponse').innerHTML = "file updated: " + received.fileName;
         }
     });
     request.send(json);
-};
+}
 
 function getAllFiles() {
     request.open('GET', '/api/getAllFiles', true);
     request.addEventListener("load", () => {
         const received = JSON.parse(request.response);
         if (request.status === 200) {
-            alert(received)
+            alert(received);
         }
     });
     request.send();
-};
+}
 
 function clearServerResponse(){
     setTimeout(()=>{
         document.getElementById('serverResponse').innerHTML = "";
-    },3000)
+    },3000);
 }
