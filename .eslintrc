@@ -1,0 +1,18 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["airbnb/base"],
+  "rules": {
+    "eol-last": "off",
+    "no-underscore-dangle": "off",
+    "prefer-destructuring": "off",
+    "no-alert": "off",
+    "no-console": "off",
+    "import/extensions": [0, { "js": "always" }],
+    "no-param-reassign": "off",
+    "no-unused-vars": "off"
+  }
+}
