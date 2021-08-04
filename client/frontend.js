@@ -24,7 +24,7 @@ function deleteFile() {
   const request = new XMLHttpRequest();
   const fileName = document.getElementById('deleteFileName').value;
   const json = JSON.stringify({ fileName });
-  request.open('DELETE', '/api/deleteFile', true);
+  request.open('POST', '/api/deleteFile', true);
   request.setRequestHeader('Content-Type', 'application/json');
   request.addEventListener('load', () => {
     const received = JSON.parse(request.response);
@@ -77,7 +77,7 @@ function updateFile() {
   const fileName = document.getElementById('readFileName').value;
   const fileContent = document.getElementById('updateFileContent').value;
   const json = JSON.stringify({ fileName, fileContent });
-  request.open('PUT', '/api/updateFile', true);
+  request.open('POST', '/api/updateFile', true);
   request.setRequestHeader('Content-Type', 'application/json');
   request.addEventListener('load', () => {
     const received = JSON.parse(request.response);

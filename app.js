@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import cors from 'cors';
 import {
   createFile, deleteFile, readFile, updateFile, getAllFiles,
 } from './functions.js';
@@ -8,6 +9,9 @@ const __dirname = path.resolve();
 const app = express();
 const jsonParser = express.json();
 
+app.use(cors({
+  origin: '*',
+}));
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'client')));
 app.get('/', ((req, res) => {
@@ -33,7 +37,7 @@ app.post('/api/readFile', jsonParser, async (req, res) => {
   }
 });
 
-app.delete('/api/deleteFile', jsonParser, async (req, res) => {
+app.post('/api/deleteFile', jsonParser, async (req, res) => {
   const fileName = req.body.fileName;
   try {
     res.json(await deleteFile(fileName));
@@ -42,7 +46,7 @@ app.delete('/api/deleteFile', jsonParser, async (req, res) => {
   }
 });
 
-app.put('/api/updateFile', jsonParser, async (req, res) => {
+app.post('/api/updateFile', jsonParser, async (req, res) => {
   const fileName = req.body.fileName;
   const fileContent = req.body.fileContent;
   try {
